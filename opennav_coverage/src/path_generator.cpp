@@ -34,9 +34,11 @@ Path PathGenerator::generatePath(
     action_continuity_type = default_continuity_type_;
     curve = default_curve_;
     // turn_point_distance = default_turn_point_distance_;
+    curve->setDiscretization(default_turn_point_distance_);
   } else {
     curve = createCurve(action_type, action_continuity_type);
     // turn_point_distance = settings.turn_point_distance;
+    curve->setDiscretization(settings.turn_point_distance);
   }
 
   if (!curve) {

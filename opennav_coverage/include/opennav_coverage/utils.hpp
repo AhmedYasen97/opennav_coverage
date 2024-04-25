@@ -126,7 +126,7 @@ namespace util {
         msg.swaths_ordered = true;
         msg.header = header;
 
-        if (raw_path.getStates().size() == 0) {
+        if (raw_path.size() == 0) {
             return msg;
         }
 
@@ -149,7 +149,7 @@ namespace util {
             curr_turn = &msg.turns.back();
         }
 
-        for (unsigned int i = 0; i != path.getStates().size(); i++) {
+        for (unsigned int i = 0; i != path.size(); i++) {
 
             if (curr_state == path.getState(i).type && path.getState(i).type == PathSectionType::SWATH) {
                 // Continuing swath so...
@@ -186,7 +186,7 @@ namespace util {
         if (curr_state == PathSectionType::SWATH) {
             opennav_coverage_msgs::msg::Swath swath;
             swath.start = toMsg(curr_swath_start);
-            swath.end = toMsg(path.getStates().back().point);
+            swath.end = toMsg(path.back().point);
             msg.swaths.push_back(swath);
         }
 
@@ -212,7 +212,7 @@ namespace util {
         nav_msgs::msg::Path msg;
         msg.header = header;
 
-        if (raw_path.getStates().size() == 0) {
+        if (raw_path.size() == 0) {
             return msg;
         }
 
@@ -223,7 +223,7 @@ namespace util {
             path.moveTo(field.getRefPoint());
         }
 
-        for (unsigned int i = 0; i != path.getStates().size(); i++) {
+        for (unsigned int i = 0; i != path.size(); i++) {
             // Swaths come in pairs of start-end sequentially
             if (i > 0 && path.getState(i).type == PathSectionType::SWATH && path.getState(i - 1).type == PathSectionType::SWATH) {
                 const float& x0 = path.getState(i - 1).point.getX();
