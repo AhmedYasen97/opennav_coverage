@@ -8,6 +8,7 @@ coverage_server:
     linear_curv_change: 200.0
     coordinates_in_cartesian_frame: true
     default_allow_overlap: false
+    default_route_type: "SNAKE"
     default_swath_angle_type: "SET_ANGLE"
     default_swath_angle: 0.0 # We know its aligned for the demo
 
