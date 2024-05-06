@@ -110,7 +110,9 @@ TEST(UtilsTests, TesttoNavPathMsg)
 
   auto msg = util::toNavPathMsg(path_in, field, header_in, true, 0.1);
   EXPECT_EQ(msg.header.frame_id, "test");
-  EXPECT_EQ(msg.poses.size(), 10u);
+
+  // Path goes nowhere so compressed into a dense path
+  EXPECT_EQ(msg.poses.size(), 1u);
 }
 
 TEST(UtilsTests, TesttoCoveragePathMsg2)
